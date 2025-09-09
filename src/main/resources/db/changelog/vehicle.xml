@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+       http://www.liquibase.org/xml/ns/dbchangelog
+       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="4-create-vehicles" author="dev">
+        <createTable tableName="vehicles">
+            <column name="id" type="NUMBER(19,0)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="NUMBER(19,0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="registration_no" type="VARCHAR2(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="make" type="VARCHAR2(50)"/>
+            <column name="model" type="VARCHAR2(50)"/>
+            <column name="year" type="NUMBER(4,0)"/>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+
+        <!-- Foreign key linking vehicle to user -->
+        <addForeignKeyConstraint baseTableName="vehicles"
+                                 baseColumnNames="user_id"
+                                 referencedTableName="app_users"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_vehicles_user"/>
+    </changeSet>
+
+    <!-- Optional: seed vehicles -->
+    <changeSet id="seed-vehicles" author="dev">
+        <insert tableName="vehicles">
+            <column name="user_id" valueNumeric="1"/>
+            <column name="registration_no" value="MH12AB1234"/>
+            <column name="make" value="Toyota"/>
+            <column name="model" value="Corolla"/>
+            <column name="year" valueNumeric="2020"/>
+        </insert>
+
+        <insert tableName="vehicles">
+            <column name="user_id" valueNumeric="1"/>
+            <column name="registration_no" value="MH14XY5678"/>
+            <column name="make" value="Honda"/>
+            <column name="model" value="Activa"/>
+            <column name="year" valueNumeric="2019"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
