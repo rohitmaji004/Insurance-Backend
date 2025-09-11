@@ -1,0 +1,47 @@
+# ========================
+# Server Configuration
+# ========================
+server:
+  port: 8080  # Change this to any port you like
+
+# ========================
+# Datasource Configuration
+# ========================
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update   # update schema automatically
+    show-sql: true
+
+# ========================
+# H2 Console
+# ========================
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+# ========================
+# Actuator (Health/Info)
+# ========================
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always  # optional: shows DB status in health check
+
+# ========================
+# Logging (optional)
+# ========================
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
