@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Payment</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4 bg-gray-100">
+
+<div id="app" class="w-full max-w-lg bg-white rounded-xl shadow-lg p-8 space-y-8">
+
+    <!-- Page 1: Get Quote -->
+    <div id="page-get-quote" class="space-y-6">
+        <h2 class="text-2xl font-bold text-center text-gray-800">Get Your Insurance Quote</h2>
+        <input type="text" id="fullName" placeholder="Full Name" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500">
+        <input type="text" id="vehicleNumber" placeholder="Vehicle Number" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500">
+        <button id="get-quote" class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-colors">Get Quote</button>
+        <p id="quote-error" class="text-red-500 hidden"></p>
+    </div>
+
+    <!-- Page 2: Choose Payment Method -->
+    <div id="page-payment-method" class="space-y-6 hidden">
+        <h2 class="text-2xl font-bold text-center text-gray-800">Choose a Payment Method</h2>
+        <div class="flex flex-col space-y-4">
+            <label class="payment-option border p-4 flex items-center cursor-pointer rounded hover:bg-gray-50">
+                <input type="radio" name="paymentMethod" value="CARD" class="mr-3">Card
+            </label>
+            <label class="payment-option border p-4 flex items-center cursor-pointer rounded hover:bg-gray-50">
+                <input type="radio" name="paymentMethod" value="UPI" class="mr-3">UPI
+            </label>
+            <label class="payment-option border p-4 flex items-center cursor-pointer rounded hover:bg-gray-50">
+                <input type="radio" name="paymentMethod" value="PAYLATER" class="mr-3">PayLater
+            </label>
+        </div>
+        <button id="next-to-credentials" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">Next</button>
+        <button id="back-to-quote" class="w-full text-gray-500 hover:text-gray-700 mt-2">&larr; Back to Quote</button>
+    </div>
+
+    <!-- Page 3: Payment Credentials -->
+    <div id="page-payment-credentials" class="space-y-6 hidden">
+        <h2 id="credentials-header" class="text-2xl font-bold text-center text-gray-800"></h2>
+        
+        <!-- Card Form -->
+        <form id="card-form" class="space-y-4 hidden">
+            <input type="text" id="cardNumber" placeholder="Card Number" class="w-full px-4 py-2 border rounded-md">
+            <input type="text" id="cardHolderName" placeholder="Cardholder Name" class="w-full px-4 py-2 border rounded-md">
+            <div class="flex space-x-4">
+                <input type="number" id="expiryMonth" placeholder="MM" class="w-1/2 px-4 py-2 border rounded-md">
+                <input type="number" id="expiryYear" placeholder="YYYY" class="w-1/2 px-4 py-2 border rounded-md">
+            </div>
+            <input type="text" id="cvv" placeholder="CVV" class="w-full px-4 py-2 border rounded-md">
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">Make Payment</button>
+        </form>
+
+        <!-- UPI / PayLater -->
+        <div id="upi-paylater-content" class="text-center hidden">
+            <img src="https://placehold.co/120x120/E2E8F0/A0AEC0?text=QR+Code" alt="QR Code" class="mx-auto mb-4"/>
+            <button id="complete-payment" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">Complete Payment</button>
+        </div>
+        <button id="back-to-method" class="w-full mt-4 text-gray-500 hover:text-gray-700">&larr; Back to Payment Method</button>
+    </div>
+
+    <!-- Page 4: Confirmation -->
+    <div id="page-confirmation" class="hidden space-y-4 text-center">
+        <h2 class="text-3xl font-bold text-green-600">Thank You!</h2>
+        <p class="text-lg text-gray-800">Your policy has been successfully generated.</p>
+        <p class="text-xl font-bold text-gray-800">Policy Number: <span id="policy-number"></span></p>
+        <button id="new-policy" class="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700">New Policy</button>
+    </div>
+
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
