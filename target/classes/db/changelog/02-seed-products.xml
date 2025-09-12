@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <changeSet id="seed-products" author="dev">
+    <insert tableName="policy_products">
+      <column name="name" value="Comprehensive Car"/>
+      <column name="base_premium" valueNumeric="7500"/>
+      <column name="tenure_months" valueNumeric="12"/>
+    </insert>
+    <insert tableName="policy_products">
+      <column name="name" value="Two-Wheeler"/>
+      <column name="base_premium" valueNumeric="3500"/>
+      <column name="tenure_months" valueNumeric="12"/>
+    </insert>
+  </changeSet>
+</databaseChangeLog>

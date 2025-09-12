@@ -1,0 +1,7 @@
+com\icdc\insurance\controller\PolicyControllerTest.class
+com\icdc\insurance\repo\PolicyProductRepositoryTest.class
+com\icdc\insurance\repo\VehicleRepositoryTest.class
+com\icdc\insurance\repo\UserRepositoryTest.class
+com\icdc\insurance\repo\PolicyRepositoryTest.class
+com\icdc\insurance\service\PolicyServiceImplTest.class
+com\icdc\insurance\integration\PolicyIntegrationTest.class

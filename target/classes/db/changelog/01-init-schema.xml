@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <changeSet id="1-create-users" author="dev">
+    <createTable tableName="app_users">
+      <column name="id" type="NUMBER(19,0)" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="email" type="VARCHAR2(255)"/>
+      <column name="password" type="VARCHAR2(255)"/>
+      <column name="full_name" type="VARCHAR2(255)"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="2-create-policy_products" author="dev">
+    <createTable tableName="policy_products">
+      <column name="id" type="NUMBER(19,0)" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="name" type="VARCHAR2(255)"/>
+      <column name="base_premium" type="NUMBER(10,2)"/>
+      <column name="tenure_months" type="NUMBER(10,0)"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="3-create-policies" author="dev">
+    <createTable tableName="policies">
+      <column name="id" type="NUMBER(19,0)" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="policy_no" type="VARCHAR2(64)" />
+      <column name="user_id" type="NUMBER(19,0)"/>
+      <column name="product_id" type="NUMBER(19,0)"/>
+      <column name="vehicle_id" type="NUMBER(19,0)"/>
+      <column name="status" type="VARCHAR2(32)"/>
+      <column name="start_date" type="DATE"/>
+      <column name="end_date" type="DATE"/>
+      <column name="premium" type="NUMBER(12,2)"/>
+      <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+    </createTable>
+
+    <addForeignKeyConstraint baseTableName="policies" baseColumnNames="user_id"
+        referencedTableName="app_users" referencedColumnNames="id" constraintName="fk_policies_user"/>
+
+    <addForeignKeyConstraint baseTableName="policies" baseColumnNames="product_id"
+        referencedTableName="policy_products" referencedColumnNames="id" constraintName="fk_policies_product"/>
+  </changeSet>
+
+</databaseChangeLog>
